@@ -18,7 +18,18 @@ builder.Services.AddDbContext<Contexto>
 builder.Services.AddSingleton(typeof(IRepositorio<>), typeof(RepositorioBase<>));
 builder.Services.AddSingleton<ITarefa, RepositorioTarefa>();
 
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("PermitirTudo",
+            builder => builder.AllowAnyOrigin()
+                              .AllowAnyMethod()
+                              .AllowAnyHeader());
+    });
+
+
 var app = builder.Build();
+
+app.UseCors("PermitirTudo");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
