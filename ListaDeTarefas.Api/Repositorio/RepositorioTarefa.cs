@@ -36,8 +36,7 @@ namespace ListaDeTarefas.Api.Repositorio
         {
             using (var data = new Contexto(_dbContextOptions))
             {
-                return await data.Tarefas
-                            .AsNoTracking().ToListAsync();
+                return await data.Tarefas.AsNoTracking().ToListAsync();
             }
         }
     }

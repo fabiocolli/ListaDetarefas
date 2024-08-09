@@ -1,0 +1,15 @@
+.header {
+  background-color: "#b3cde0";
+  padding: "20px";
+  text-align: "center";
+  border-radius: "8px";
+  margin-bottom: "20px";
+}
+
+.title {
+  color: "#034f84";
+  font-family: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif';
+  font-size: "24px";
+  font-weight: "bold";
+  margin: 0;
+}

@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.tablewrapper {
+  width: 50%; /* Ajuste conforme necessário */
+}
+
+.tracado {
+  text-decoration: line-through;
+}

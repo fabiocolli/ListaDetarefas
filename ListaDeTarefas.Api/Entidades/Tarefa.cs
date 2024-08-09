@@ -6,5 +6,7 @@
         public string Nome { get; set; }
         public DateTime DataCriacao { get; set; }
         public string Anotacao { get; set; }
+        public bool Finalizada { get; set; }
+        public DateTime? DataFinalizacao { get; set; }
     }
 }
