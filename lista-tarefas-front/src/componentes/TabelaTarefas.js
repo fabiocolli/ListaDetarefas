@@ -8,8 +8,10 @@ import {
   Tr,
   Th,
   IconButton,
+  VStack,
+  HStack,
 } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
+import { CheckCircleIcon, DeleteIcon } from "@chakra-ui/icons";
 import styles from "../ui/tabelatarefas.module.css";
 
 export default function TabelaTarefas({
@@ -17,11 +19,30 @@ export default function TabelaTarefas({
   erro,
   excluirTarefa,
   finalizarTarefa,
+  finalizadas,
+  abertas,
 }) {
   return (
     <div className={styles.container}>
       <div className={styles.tablewrapper}>
         {erro && <Text color="red.500">Erro: {erro}</Text>}
+
+        <VStack align="start" spacing={4} mb={4} mt={0}>
+          <HStack spacing={2}>
+            <CheckCircleIcon color="yellow.500" />
+            <Text fontSize="lg" fontWeight="bold">
+              {" "}
+              Tarefas Abertas: {abertas}
+            </Text>
+          </HStack>
+          <HStack spacing={2}>
+            <CheckCircleIcon color="blue.500" />
+            <Text fontSize="lg" fontWeight="bold">
+              {" "}
+              Tarefas Finalizadas: {finalizadas}
+            </Text>
+          </HStack>
+        </VStack>
         <Table>
           <Thead>
             <Tr>

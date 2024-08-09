@@ -17,10 +17,17 @@ const pegarHorarioDoBrasil = () => {
 export default function ListaDeTarefas() {
   const [dados, setDados] = useState([]);
   const [erro, setErro] = useState("");
+  const [abertas, setAbertas] = useState(0);
+  const [finalizadas, setFinalizadas] = useState(0);
 
   const listarTarefas = async () => {
     try {
       const response = await listarTodasTarefas();
+      const tarefasAbertas = response.data.filter((t) => !t.finalizada);
+      const tarefasFinalizadas = response.data.filter((t) => t.finalizada);
+
+      setAbertas(tarefasAbertas.length);
+      setFinalizadas(tarefasFinalizadas.length);
 
       setDados(response.data);
 
@@ -73,6 +80,8 @@ export default function ListaDeTarefas() {
         erro={erro}
         excluirTarefa={manipuladorExcluiTarefa}
         finalizarTarefa={manipuladorFinalizaTarefa}
+        abertas={abertas}
+        finalizadas={finalizadas}
       />
     </div>
   );

@@ -1,11 +1,11 @@
 import "./App.css";
-import Topo from "./componentes/Topo";
 import ListaDeTarefas from "./componentes/ListaDeTarefas";
+import Cabecalho from "./componentes/Cabecalho";
 
 function App() {
   return (
     <div>
-      <Topo></Topo>
+      <Cabecalho></Cabecalho>
       <ListaDeTarefas></ListaDeTarefas>
     </div>
   );

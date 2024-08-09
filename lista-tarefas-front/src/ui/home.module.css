@@ -1,15 +1,16 @@
 .header {
-  background-color: "#b3cde0";
-  padding: "20px";
-  text-align: "center";
-  border-radius: "8px";
-  margin-bottom: "20px";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px; /* Ajuste conforme necessário */
+  background-color: #f0f4f8; /* Cor de fundo suave */
+  border-bottom: 1px solid #d1d9e6; /* Linha sutil na parte inferior */
 }
 
 .title {
-  color: "#034f84";
-  font-family: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif';
-  font-size: "24px";
-  font-weight: "bold";
-  margin: 0;
+  font-family: "Roboto", sans-serif; /* Fonte estilizada */
+  font-size: 24px; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  color: #333; /* Cor do texto */
+  margin: 0; /* Remove a margem padrão do <h1> */
 }
