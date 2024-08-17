@@ -18,6 +18,7 @@ namespace ListaDeTarefas.Api.Controllers
         [HttpPost("/Adicionar")]
         public async Task AdicionarTarefa(Tarefa tarefa)
         {
+            tarefa.DataCriacao = DateTime.Now;
             await _tarefa.Adicionar(tarefa);
         }
 

@@ -24,3 +24,11 @@ export const finalizarTarefa = async (tarefa) => {
     throw error;
   }
 };
+
+export const incluirTarefa = async (tarefa) => {
+  try {
+    await axios.post("http://localhost:5282/Adicionar", tarefa);
+  } catch (error) {
+    throw error;
+  }
+};
