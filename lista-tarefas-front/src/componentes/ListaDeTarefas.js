@@ -6,6 +6,7 @@ import {
 } from "../api/_api";
 import TabelaTarefas from "./TabelaTarefas";
 import BotaoIncluirNovaTarefa from "./BotaoIncluirNovaTarefa";
+import ResumoTarefas from "./ResumoTarefas";
 
 const pegarHorarioDoBrasil = () => {
   const agora = new Date();
@@ -76,7 +77,8 @@ export default function ListaDeTarefas() {
 
   return (
     <div>
-      <BotaoIncluirNovaTarefa />
+      <BotaoIncluirNovaTarefa listarTodasTarefas={listarTarefas} />
+      <ResumoTarefas abertas={abertas} finalizadas={finalizadas} />
       <TabelaTarefas
         dados={dados}
         erro={erro}

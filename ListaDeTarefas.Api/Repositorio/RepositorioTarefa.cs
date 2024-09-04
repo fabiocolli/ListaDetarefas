@@ -32,6 +32,17 @@ namespace ListaDeTarefas.Api.Repositorio
             }
         }
 
+        public async Task<IEnumerable<Tarefa>> BuscarTarefasAbertas()
+        {
+            using (var data = new Contexto(_dbContextOptions))
+            {
+                return await data.Tarefas
+                    .Where(t => !t.Finalizada)
+                    .AsNoTracking()
+                    .ToListAsync();
+            }
+        }
+
         public async Task<IEnumerable<Tarefa>> BuscarTodasTarefas()
         {
             using (var data = new Contexto(_dbContextOptions))

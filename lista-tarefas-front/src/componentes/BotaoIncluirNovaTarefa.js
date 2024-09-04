@@ -14,12 +14,15 @@ import {
 import FormNovaTarefa from "./FormNovaTarefa";
 import { incluirTarefa } from "../api/_api";
 
-export default function BotaoIncluirNovaTarefa() {
+export default function BotaoIncluirNovaTarefa({ listarTodasTarefas }
+  
+) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const manipulaIncluirTarefa = async (tarefa) => {
     try {
       await incluirTarefa({ ...tarefa });
+      await listarTodasTarefas();
       onClose();
     } catch (error) {
       throw error;

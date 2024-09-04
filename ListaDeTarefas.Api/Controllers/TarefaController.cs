@@ -42,10 +42,14 @@ namespace ListaDeTarefas.Api.Controllers
         }
 
         [HttpGet("/ListarTarefas")]
-        public async Task<IEnumerable<Tarefa>> ListarTarefas()
+        public async Task<IEnumerable<Tarefa>> ListarTarefas(bool listarApenasAbertas = false)
         {
+            if (listarApenasAbertas)
+            {
+                return await _tarefa.BuscarTarefasAbertas();
+            }
+
             return await _tarefa.ListarTudo();
         }
-
     }
 }

@@ -13,6 +13,7 @@ export default function FormNovaTarefa({ onSubmit, onClose }) {
   const [nome, setNome] = useState("");
   const [dataFinalizacao, setDataFinalizacao] = useState("");
   const [anotacao, setAnotacao] = useState("");
+  const [tamanhoAnotacao, setTamanhoAnotacao] = useState(0);
 
   const manipuladorSubmit = (event) => {
     event.preventDefault();
@@ -24,6 +25,11 @@ export default function FormNovaTarefa({ onSubmit, onClose }) {
     onSubmit(tarefa);
     onClose();
   };
+  const manipuladorAnotacao = (valor) => {
+    setAnotacao(valor);
+    setTamanhoAnotacao(valor.length);
+  };
+
   return (
     <Box
       as="form"
@@ -43,6 +49,7 @@ export default function FormNovaTarefa({ onSubmit, onClose }) {
             type="text"
             placeholder="Digite o nome da tarefa"
             onChange={(e) => setNome(e.target.value)}
+            maxLength={30}
           />
         </FormControl>
         <FormControl id="dataFinalizacao" isRequired>
@@ -57,8 +64,10 @@ export default function FormNovaTarefa({ onSubmit, onClose }) {
           <FormLabel>Anotação</FormLabel>
           <Textarea
             placeholder="Digite alguma anotação sobre a tarefa"
-            onChange={(e) => setAnotacao(e.target.value)}
+            onChange={(e) => manipuladorAnotacao(e.target.value)}
+            maxLength={1000}
           />
+          <FormLabel>{`Digitado ${tamanhoAnotacao} de 1000`}</FormLabel>
         </FormControl>
 
         <Button colorScheme="blue" type="submit">

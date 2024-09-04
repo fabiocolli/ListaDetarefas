@@ -7,5 +7,6 @@ namespace ListaDeTarefas.Api.Interfaces
         Task<IEnumerable<Tarefa>> BuscarTarefaNomeAproximado(string nome);
         Task<Tarefa> BuscarTarefaPeloId(int id);
         Task<IEnumerable<Tarefa>> BuscarTodasTarefas();
+        Task<IEnumerable<Tarefa>> BuscarTarefasAbertas();
     }
 }

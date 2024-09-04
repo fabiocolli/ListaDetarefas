@@ -4,10 +4,15 @@
   align-items: center;
   height: 50vh;
   padding-top: 5%;
+  /* padding: 10px; */
 }
 
 .tablewrapper {
   width: 50%; /* Ajuste conforme necessário */
+  /* max-height: 300px; */
+  /* overflow-y: auto; */
+  /* border: 1px solid #e2e8f0; */
+  /* overflow: hidden; */
 }
 
 .tracado {
