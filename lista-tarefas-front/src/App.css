@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.container-principal {
+  padding-top: 20px; /* Adiciona um espaço entre o cabeçalho e as tarefas */
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; Centraliza os elementos */
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Garante que os elementos ocupem toda a largura disponível */
+  min-height: 100vh; /* Ocupa a altura total da tela */
+}
+
+.layout-container > * {
+  margin: 10px; /* Adiciona uma margem entre os componentes para evitar sobreposição */
+}

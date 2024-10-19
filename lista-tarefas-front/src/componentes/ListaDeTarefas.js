@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   excluirTarefa,
   finalizarTarefa,
@@ -7,6 +7,7 @@ import {
 import TabelaTarefas from "./TabelaTarefas";
 import BotaoIncluirNovaTarefa from "./BotaoIncluirNovaTarefa";
 import ResumoTarefas from "./ResumoTarefas";
+import { Box, Button } from "@chakra-ui/react";
 
 const pegarHorarioDoBrasil = () => {
   const agora = new Date();
@@ -17,14 +18,18 @@ const pegarHorarioDoBrasil = () => {
 };
 
 export default function ListaDeTarefas() {
+  const tamanhoDaPagina = 5;
   const [dados, setDados] = useState([]);
   const [erro, setErro] = useState("");
   const [abertas, setAbertas] = useState(0);
   const [finalizadas, setFinalizadas] = useState(0);
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const [tamanhoPagina, setTamanhoPagina] = useState(tamanhoDaPagina); // Defina o tamanho da página
 
-  const listarTarefas = async () => {
+  const listarTarefas = useCallback(async () => {
     try {
-      const response = await listarTodasTarefas();
+      setTamanhoPagina(tamanhoDaPagina);
+      const response = await listarTodasTarefas(paginaAtual, tamanhoPagina);
       const tarefasAbertas = response.data.filter((t) => !t.finalizada);
       const tarefasFinalizadas = response.data.filter((t) => t.finalizada);
 
@@ -37,11 +42,21 @@ export default function ListaDeTarefas() {
     } catch (error) {
       setErro(error.message);
     }
+  }, [paginaAtual, tamanhoPagina]);
+
+  const irParaPaginaAnterior = () => {
+    if (paginaAtual > 1) {
+      setPaginaAtual(paginaAtual - 1);
+    }
+  };
+
+  const irParaProximaPagina = () => {
+    setPaginaAtual(paginaAtual + 1);
   };
 
   useEffect(() => {
     listarTarefas();
-  }, []);
+  }, [listarTarefas]);
 
   const manipuladorExcluiTarefa = async (id) => {
     try {
@@ -77,16 +92,30 @@ export default function ListaDeTarefas() {
 
   return (
     <div>
-      <BotaoIncluirNovaTarefa listarTodasTarefas={listarTarefas} />
-      <ResumoTarefas abertas={abertas} finalizadas={finalizadas} />
-      <TabelaTarefas
-        dados={dados}
-        erro={erro}
-        excluirTarefa={manipuladorExcluiTarefa}
-        finalizarTarefa={manipuladorFinalizaTarefa}
-        abertas={abertas}
-        finalizadas={finalizadas}
-      />
+      <Box>
+        <BotaoIncluirNovaTarefa listarTodasTarefas={listarTarefas} />
+        <ResumoTarefas abertas={abertas} finalizadas={finalizadas} />
+        <TabelaTarefas
+          dados={dados}
+          erro={erro}
+          excluirTarefa={manipuladorExcluiTarefa}
+          finalizarTarefa={manipuladorFinalizaTarefa}
+          abertas={abertas}
+          finalizadas={finalizadas}
+        />
+        <Box display="flex" justifyContent="center" mt={4}>
+          <Button
+            onClick={irParaPaginaAnterior}
+            isDisabled={paginaAtual === 1}
+            mr={2}
+          >
+            Página Anterior
+          </Button>
+          <Button onClick={irParaProximaPagina} isDisabled={!dados}>
+            Próxima Página
+          </Button>
+        </Box>
+      </Box>
     </div>
   );
 }

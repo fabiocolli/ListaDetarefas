@@ -42,14 +42,16 @@ namespace ListaDeTarefas.Api.Controllers
         }
 
         [HttpGet("/ListarTarefas")]
-        public async Task<IEnumerable<Tarefa>> ListarTarefas(bool listarApenasAbertas = false)
+        public async Task<IEnumerable<Tarefa>> ListarTarefas(bool listarApenasAbertas = false, int pagina = 1, int tamanhoPagina = 8)
         {
             if (listarApenasAbertas)
             {
-                return await _tarefa.BuscarTarefasAbertas();
+                var tarefasAbertas = await _tarefa.BuscarTarefasAbertas();
+                return tarefasAbertas.Skip((pagina - 1) * tamanhoPagina).Take(tamanhoPagina);
             }
 
-            return await _tarefa.ListarTudo();
+            var tarefas = await _tarefa.ListarTudo();
+            return tarefas.Skip((pagina - 1) * tamanhoPagina).Take(tamanhoPagina);
         }
     }
 }
