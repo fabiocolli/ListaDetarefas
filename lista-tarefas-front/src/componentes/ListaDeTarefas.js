@@ -8,6 +8,7 @@ import TabelaTarefas from "./TabelaTarefas";
 import BotaoIncluirNovaTarefa from "./BotaoIncluirNovaTarefa";
 import ResumoTarefas from "./ResumoTarefas";
 import { Box, Button } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
 
 const pegarHorarioDoBrasil = () => {
   const agora = new Date();
@@ -25,6 +26,11 @@ export default function ListaDeTarefas() {
   const [finalizadas, setFinalizadas] = useState(0);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [tamanhoPagina, setTamanhoPagina] = useState(tamanhoDaPagina); // Defina o tamanho da página
+  const dispatch = useDispatch();
+
+  const { resumoReducer } = useSelector((state) => state.resumoReducer);
+
+  console.log({ resumoReducer });
 
   const listarTarefas = useCallback(async () => {
     try {
@@ -37,6 +43,18 @@ export default function ListaDeTarefas() {
       setFinalizadas(tarefasFinalizadas.length);
 
       setDados(response.data);
+
+      const dadosReducer = {
+        type: 'SET_CURRENT_RESUMO',
+        payload: {
+          total: 30,
+          abertas: 22,
+          finalizadas: 8
+        }
+      };
+
+      dispatch(dadosReducer);
+      // dispatch({ type: 'SET_CURRENT_RESUMO' })
 
       setErro("");
     } catch (error) {
@@ -94,14 +112,15 @@ export default function ListaDeTarefas() {
     <div>
       <Box>
         <BotaoIncluirNovaTarefa listarTodasTarefas={listarTarefas} />
-        <ResumoTarefas abertas={abertas} finalizadas={finalizadas} />
+        {/* <ResumoTarefas abertas={abertas} finalizadas={finalizadas} /> */}
+        <ResumoTarefas />
         <TabelaTarefas
           dados={dados}
           erro={erro}
           excluirTarefa={manipuladorExcluiTarefa}
           finalizarTarefa={manipuladorFinalizaTarefa}
-          abertas={abertas}
-          finalizadas={finalizadas}
+        // abertas={abertas}
+        // finalizadas={finalizadas}
         />
         <Box display="flex" justifyContent="center" mt={4}>
           <Button

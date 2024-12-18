@@ -1,7 +1,15 @@
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import { HStack, Text, VStack } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 
-export default function ResumoTarefas({ abertas, finalizadas }) {
+export default function ResumoTarefas() {
+  const { resumoReducer } = useSelector((rootReducer) => rootReducer.resumoReducer);
+
+  const abertas = 0;//tarefas.filter((t) => !t.finalizada).length;
+  const finalizadas = 0;//tarefas.filter((t) => t.finalizada).length;
+
+  console.log({ resumoReducer });
+
   return (
     <>
       <VStack align="start" spacing={4} mb={4} mt={0}>
