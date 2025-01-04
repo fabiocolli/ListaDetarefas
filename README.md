@@ -1,4 +1,4 @@
-# ListaDeTarefas.Api
+# ListaDetarefas
 
 ## Descrição
 Este projeto é uma API para gerenciar uma lista de tarefas. Ele foi desenvolvido utilizando .NET 9 e C# 13.0.
@@ -26,3 +26,6 @@ Para executar o projeto, utilize o comando `dotnet run` no terminal na pasta rai
 
 ## Documentação da API
 A documentação da API é gerada automaticamente pelo Swashbuckle e pode ser acessada através do endpoint `/swagger` quando a aplicação está em execução.
+
+## Implementação em React
+Este projeto possui uma implementação em React que consome a API. A aplicação em React permite que os usuários interajam com a lista de tarefas através de uma interface web amigável. A aplicação em React se comunica com a API utilizando requisições HTTP para realizar operações de CRUD (Create, Read, Update, Delete) nas tarefas.
