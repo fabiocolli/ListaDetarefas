@@ -21,7 +21,7 @@ namespace ListaDeTarefas.Api.Configuracao
         }
         public string PegarStringConexao()
         {
-            return "Data Source=fc-p\\local;Initial Catalog=TarefasComReact;Persist Security Info=True;User ID=sa;Password=qM1t$up|iC74;TrustServerCertificate=True";
+            return "Data Source=fc-p\\local;Initial Catalog=TarefasComReact;Persist Security Info=True;User ID=sa;Password=;TrustServerCertificate=True";
         }
 
         public DbSet<Tarefa> Tarefas { get; set; }
